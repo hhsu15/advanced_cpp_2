@@ -9,7 +9,34 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <map>
 using namespace std;
+
+class Person {
+
+private:
+	string name;
+	int age;
+
+public:
+	//constructor
+    //Person():name(name), age(age) {};
+
+	// intialize variables
+	Person(string name, int age): name(name), age(age){
+	};
+	 /* same as this
+	Person(string name, int age){
+			this->name = name;
+			this->age = age;
+		};
+   */
+
+
+	void print() {
+		cout << name << ":" << age << endl;
+	}
+};
 
 int main() {
 
@@ -103,7 +130,7 @@ int main() {
 			myList.insert(it, 20);
 		}
 
-		if(*it == 2) {
+		if (*it == 2) {
 			myList.erase(it);
 		}
 	}
@@ -113,5 +140,44 @@ int main() {
 		cout << *it << endl;
 	}
 
+	//-------mao-------------
+	map<string, int> ages;
+	ages["Hsin"] = 38;
+	ages["Jess"] = 35;
+	ages["Kyle"] = 6;
+
+	cout << ages["Hsin"] << endl;
+
+	for (map<string, int>::iterator it = ages.begin(); it != ages.end(); it++) {
+		cout << it->first << ": " << it->second << endl; // print out the key
+
+	}
+
+	// find if a key exists in map
+	if (ages.find("Kyle2") != ages.end()) {
+		cout << "Found Kyle" << endl;
+	} else {
+		cout << "Kyle not found" << endl;
+	}
+
+	// pair - you can use this when looping thru the map
+	pair<string, int> mypair("Ken", 30);
+	cout << mypair.first << endl;
+
+	//insert a pair into map
+	ages.insert(mypair);
+	cout << "Ken's age is :" << ages["Ken"] << endl;
+
+	//make_pair function
+	ages.insert(make_pair("Peter", 30));
+
+	for (map<string, int>::iterator it = ages.begin(); it != ages.end(); it++) {
+		pair<string, int> age = *it;
+		cout << "First element:" << age.first << endl;
+	}
+
+	map<string name, int age> people;
+
 	return 0;
 }
+
